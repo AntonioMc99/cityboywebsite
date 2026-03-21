@@ -14,16 +14,6 @@ html {
 
 html,
 body {
-  &::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(255, 255, 255, 0.85);
-    z-index: -1;
-  }
   background-image: url('images/cb_back.JPG');
   background-size: cover;
   background-position: center;
@@ -37,16 +27,6 @@ body {
 }
 
 body {
-  &::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(255, 255, 255, 0.85);
-    z-index: -1;
-  }
   background-image: url('images/cb_back.JPG');
   background-size: cover;
   background-position: center;
@@ -55,7 +35,7 @@ body {
   position: relative;
   min-height: 100vh;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  background: #fff;
+  
   color: #000;
   line-height: 1.6;
 }
