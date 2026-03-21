@@ -41,7 +41,7 @@ body::before {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  opacity: 0.35;
+  opacity: 0.80;
   z-index: -1;
   pointer-events: none;
 body::before {
@@ -51,7 +51,7 @@ body::before {
   left: 0;
   width: 100%;
   height: 100%;
-  opacity: 0.35;
+  opacity: 0.80;
   z-index: -1;
   pointer-events: none;
 }
@@ -404,12 +404,12 @@ img {
 
 .section {
   padding: 5rem 0;
-  background: rgba(255, 255, 255, 0.85);
+  background: rgba(255, 255, 255, 0.50);
   color: #fdfdfd;
 }
 
 .section--dark {
-  background: rgba(245, 245, 245, 0.85);
+  background: rgba(245, 245, 245, 0.50);
 }
 
 .section-title {
