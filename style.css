@@ -527,8 +527,8 @@ img {
 
 .pricing-card {
   background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%);
-  border-radius: 20px;
-  padding: 2.5rem;
+  border-radius: 16px;
+  padding: 1.4rem 1.5rem;
   border: 2px solid rgba(255, 255, 255, 0.1);
   transition: all 0.4s ease;
   position: relative;
@@ -565,15 +565,15 @@ img {
 
 .pricing-header {
   text-align: center;
-  margin-bottom: 2rem;
-  padding-bottom: 2rem;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .pricing-header h3 {
-  font-size: 1.8rem;
+  font-size: 1.3rem;
   color: #f2c14e;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
 }
 
 .pricing-price {
@@ -584,7 +584,7 @@ img {
 }
 
 .price-amount {
-  font-size: 3rem;
+  font-size: 2rem;
   font-weight: 900;
   color: #ffffff;
 }
@@ -597,13 +597,13 @@ img {
 .pricing-features {
   list-style: none;
   padding: 0;
-  margin: 0 0 2rem 0;
+  margin: 0 0 1rem 0;
 }
 
 .pricing-features li {
-  padding: 0.75rem 0;
+  padding: 0.4rem 0;
   color: #d0d0d0;
-  font-size: 1.05rem;
+  font-size: 0.95rem;
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
@@ -795,7 +795,7 @@ img {
    ===================================== */
 
 .footer {
-  padding: 4rem 0 2rem;
+  padding: 1.2rem 0;
   text-align: center;
   color: #aaa;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
@@ -804,8 +804,8 @@ img {
 
 .footer h3 {
   color: #f2c14e;
-  font-size: 1.8rem;
-  margin-bottom: 1rem;
+  font-size: 1.2rem;
+  margin-bottom: 0.4rem;
 }
 
 .footer p {
@@ -816,7 +816,7 @@ img {
   display: flex;
   justify-content: center;
   gap: 2rem;
-  margin-top: 2rem;
+  margin-top: 0.6rem;
 }
 
 .social-icons a {
