@@ -390,6 +390,8 @@ img {
   background: rgba(0, 0, 0, 0.6);
   backdrop-filter: blur(10px);
   transition: all 0.3s ease;
+  color: #d7263d;
+  font-weight: 700;
 }
 
 .hero-badges li:hover {
