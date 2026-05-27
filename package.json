@@ -1,0 +1,23 @@
+{
+  "name": "cityboywebsite",
+  "version": "1.0.0",
+  "description": "City Boy Petz - Live Animal Education & Entertainment Website",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AntonioMc99/cityboywebsite.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AntonioMc99/cityboywebsite/issues"
+  },
+  "homepage": "https://github.com/AntonioMc99/cityboywebsite#readme",
+  "dependencies": {
+    "@vercel/analytics": "^2.0.1"
+  }
+}
