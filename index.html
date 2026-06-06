@@ -7,6 +7,7 @@
   <link rel="icon" href="images/cb_back.JPG" type="image/jpeg" />
   <link rel="apple-touch-icon" href="images/cb_back.JPG" />
   <link rel="stylesheet" href="style.css" />
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 </head>
 <body>
   <!-- Topbar -->
@@ -214,7 +215,7 @@
   <section id="contact" class="section">
     <div class="section-inner">
       <h2 class="section-title">Book Your Event</h2>
-      <form id="booking-form" class="booking-form" action="https://formspree.io/f/xkoqeapr" method="POST">
+      <form id="booking-form" class="booking-form">
         <input name="name" type="text" placeholder="Your Name *" required />
         <input name="email" type="email" placeholder="Your Email *" required />
         <input name="date" type="date" required />

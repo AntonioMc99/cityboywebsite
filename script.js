@@ -1,3 +1,38 @@
+// EmailJS — replace these three values with your own from emailjs.com
+const EMAILJS_PUBLIC_KEY  = 'YOUR_PUBLIC_KEY';
+const EMAILJS_SERVICE_ID  = 'YOUR_SERVICE_ID';
+const EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID';
+
+emailjs.init(EMAILJS_PUBLIC_KEY);
+
+const bookingForm   = document.getElementById('booking-form');
+const confirmation  = document.getElementById('confirmation');
+
+if (bookingForm) {
+  bookingForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    const submitBtn = bookingForm.querySelector('button[type="submit"]');
+    submitBtn.textContent = 'Sending…';
+    submitBtn.disabled = true;
+
+    emailjs.sendForm(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, bookingForm)
+      .then(() => {
+        bookingForm.reset();
+        confirmation.textContent = "Thank you! We'll be in touch soon to confirm your booking.";
+        confirmation.className = 'visible';
+      })
+      .catch(() => {
+        confirmation.textContent = 'Something went wrong. Please try again or contact us directly.';
+        confirmation.className = 'error';
+      })
+      .finally(() => {
+        submitBtn.textContent = 'Send Request';
+        submitBtn.disabled = false;
+      });
+  });
+}
+
 // Mobile menu toggle
 const menuToggle = document.getElementById('menu-toggle');
 const mobileMenu = document.getElementById('mobile-menu');

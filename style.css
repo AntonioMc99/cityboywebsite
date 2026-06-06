@@ -797,10 +797,20 @@ img {
   margin-top: 1.5rem;
   padding: 1rem;
   border-radius: 12px;
-  background: rgba(76, 175, 80, 0.2);
-  color: #76ff7a;
   text-align: center;
   font-weight: 600;
+}
+
+#confirmation.hidden { display: none !important; }
+
+#confirmation.visible {
+  background: rgba(76, 175, 80, 0.2);
+  color: #76ff7a;
+}
+
+#confirmation.error {
+  background: rgba(229, 57, 53, 0.2);
+  color: #ff6b6b;
 }
 
 /* =====================================
