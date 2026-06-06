@@ -1,4 +1,4 @@
-// Booking form — mailto submission
+// Booking form — Formsubmit.co (no account needed)
 const bookingForm  = document.getElementById('booking-form');
 const confirmation = document.getElementById('confirmation');
 
@@ -6,22 +6,38 @@ if (bookingForm) {
   bookingForm.addEventListener('submit', function (e) {
     e.preventDefault();
 
-    const name    = bookingForm.querySelector('[name="name"]').value.trim();
-    const email   = bookingForm.querySelector('[name="email"]').value.trim();
-    const date    = bookingForm.querySelector('[name="date"]').value;
-    const time    = bookingForm.querySelector('[name="time"]').value;
-    const message = bookingForm.querySelector('[name="message"]').value.trim();
+    const submitBtn = bookingForm.querySelector('button[type="submit"]');
+    submitBtn.textContent = 'Sending…';
+    submitBtn.disabled = true;
 
-    const subject = encodeURIComponent(`Booking Request from ${name}`);
-    const body    = encodeURIComponent(
-      `Name: ${name}\nEmail: ${email}\nDate: ${date}\nTime: ${time}\n\nAbout the event:\n${message}`
-    );
+    const data = {
+      name:    bookingForm.querySelector('[name="name"]').value.trim(),
+      email:   bookingForm.querySelector('[name="email"]').value.trim(),
+      date:    bookingForm.querySelector('[name="date"]').value,
+      time:    bookingForm.querySelector('[name="time"]').value,
+      message: bookingForm.querySelector('[name="message"]').value.trim(),
+      _subject: 'New Booking Request — City Boy Petz'
+    };
 
-    window.location.href = `mailto:cityboypetzllc@gmail.com?subject=${subject}&body=${body}`;
-
-    bookingForm.reset();
-    confirmation.textContent = 'Your email app should open with the request pre-filled — just hit send!';
-    confirmation.className = 'visible';
+    fetch('https://formsubmit.co/ajax/cityboypetzllc@gmail.com', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(data)
+    })
+      .then(res => res.json())
+      .then(() => {
+        bookingForm.reset();
+        confirmation.textContent = "Thank you! We'll be in touch soon to confirm your booking.";
+        confirmation.className = 'visible';
+      })
+      .catch(() => {
+        confirmation.textContent = 'Something went wrong. Please try again or call us at 678-760-2296.';
+        confirmation.className = 'error';
+      })
+      .finally(() => {
+        submitBtn.textContent = 'Send Request';
+        submitBtn.disabled = false;
+      });
   });
 }
 
