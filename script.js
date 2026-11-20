@@ -10,14 +10,13 @@ if (bookingForm) {
     submitBtn.textContent = 'Sending…';
     submitBtn.disabled = true;
 
-    const data = {
-      name:    bookingForm.querySelector('[name="name"]').value.trim(),
-      email:   bookingForm.querySelector('[name="email"]').value.trim(),
-      date:    bookingForm.querySelector('[name="date"]').value,
-      time:    bookingForm.querySelector('[name="time"]').value,
-      message: bookingForm.querySelector('[name="message"]').value.trim(),
-      _subject: 'New Booking Request — City Boy Petz'
-    };
+    // Collect all named fields dynamically
+    const data = { _subject: 'New Booking Request — City Boy Petz' };
+    bookingForm.querySelectorAll('[name]').forEach(el => {
+      if (el.name && el.value) {
+        data[el.name] = typeof el.value === 'string' ? el.value.trim() : el.value;
+      }
+    });
 
     fetch('https://formsubmit.co/ajax/cityboypetzllc@gmail.com', {
       method: 'POST',
@@ -31,7 +30,7 @@ if (bookingForm) {
         confirmation.className = 'visible';
       })
       .catch(() => {
-        confirmation.textContent = 'Something went wrong. Please try again or call us at 678-760-2296.';
+        confirmation.textContent = 'Something went wrong. Please try again or call us at (678) 760-2296.';
         confirmation.className = 'error';
       })
       .finally(() => {
@@ -51,12 +50,13 @@ if (menuToggle && mobileMenu) {
   });
 }
 
-// Smooth scroll
+// Smooth scroll (in-page anchors only)
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   anchor.addEventListener('click', function (e) {
-    e.preventDefault();
-    const target = document.querySelector(this.getAttribute('href'));
+    const href = this.getAttribute('href');
+    const target = document.querySelector(href);
     if (target) {
+      e.preventDefault();
       target.scrollIntoView({ behavior: 'smooth' });
       mobileMenu?.classList.add('hidden');
     }
@@ -73,14 +73,14 @@ const testimonials = [
 ];
 
 let currentTestimonial = 0;
-const textEl = document.getElementById('testimonial-text');
+const textEl   = document.getElementById('testimonial-text');
 const authorEl = document.getElementById('testimonial-author');
 
 function showTestimonial() {
   if (textEl && authorEl) {
-    textEl.textContent = `"${testimonials[currentTestimonial].text}"`;
+    textEl.textContent   = `"${testimonials[currentTestimonial].text}"`;
     authorEl.textContent = `— ${testimonials[currentTestimonial].author}`;
-    currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+    currentTestimonial   = (currentTestimonial + 1) % testimonials.length;
   }
 }
 
@@ -90,11 +90,11 @@ if (textEl && authorEl) {
 }
 
 // Carousel
-const track = document.querySelector('.carousel-track');
-const slides = document.querySelectorAll('.carousel-slide');
+const track        = document.querySelector('.carousel-track');
+const slides       = document.querySelectorAll('.carousel-slide');
 const dotsContainer = document.querySelector('.carousel-dots');
-const prevBtn = document.querySelector('.carousel-prev');
-const nextBtn = document.querySelector('.carousel-next');
+const prevBtn      = document.querySelector('.carousel-prev');
+const nextBtn      = document.querySelector('.carousel-next');
 
 if (track && slides.length) {
   let current = 0;
@@ -117,6 +117,17 @@ if (track && slides.length) {
 
   prevBtn.addEventListener('click', () => goTo(current - 1));
   nextBtn.addEventListener('click', () => goTo(current + 1));
-
   setInterval(() => goTo(current + 1), 4000);
 }
+
+// FAQ accordion
+document.querySelectorAll('.faq-question').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const item = btn.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+    // Close all
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    // Toggle clicked
+    if (!isOpen) item.classList.add('open');
+  });
+});
