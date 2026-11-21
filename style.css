@@ -789,6 +789,11 @@ img {
   grid-column: 1 / -1;
 }
 
+.booking-form select option {
+  color: #1a1a1a;
+  background: #ffffff;
+}
+
 .booking-form button {
   grid-column: 1 / -1;
 }
