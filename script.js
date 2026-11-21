@@ -44,6 +44,13 @@ if (bookingForm) {
   });
 }
 
+// Active nav link
+document.querySelectorAll('.main-nav a').forEach(link => {
+  if (link.href === window.location.href || link.pathname === window.location.pathname) {
+    link.classList.add('active');
+  }
+});
+
 // Mobile menu toggle
 const menuToggle = document.getElementById('menu-toggle');
 const mobileMenu = document.getElementById('mobile-menu');

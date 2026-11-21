@@ -236,8 +236,13 @@ img {
   transition: width 0.3s ease;
 }
 
-.main-nav a:hover::after {
+.main-nav a:hover::after,
+.main-nav a.active::after {
   width: 100%;
+}
+
+.main-nav a.active::after {
+  background: #d7263d;
 }
 
 .main-nav a:hover {
