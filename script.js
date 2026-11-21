@@ -13,7 +13,8 @@ if (bookingForm) {
     // Collect all named fields dynamically
     const data = {
       access_key: 'cbd92014-2f3f-4d7e-856f-3a3fdfe5cc47',
-      subject: 'New Booking Request — City Boy Petz'
+      subject: 'New Booking Request — City Boy Petz',
+      to: 'cityboypetzllc@gmail.com'
     };
     bookingForm.querySelectorAll('[name]').forEach(el => {
       if (el.name && el.value) {
