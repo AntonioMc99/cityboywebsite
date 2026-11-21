@@ -1,4 +1,4 @@
-// Booking form — Formsubmit.co (no account needed)
+// Booking form — Web3Forms
 const bookingForm  = document.getElementById('booking-form');
 const confirmation = document.getElementById('confirmation');
 
@@ -11,14 +11,17 @@ if (bookingForm) {
     submitBtn.disabled = true;
 
     // Collect all named fields dynamically
-    const data = { _subject: 'New Booking Request — City Boy Petz' };
+    const data = {
+      access_key: 'cbd92014-2f3f-4d7e-856f-3a3fdfe5cc47',
+      subject: 'New Booking Request — City Boy Petz'
+    };
     bookingForm.querySelectorAll('[name]').forEach(el => {
       if (el.name && el.value) {
         data[el.name] = typeof el.value === 'string' ? el.value.trim() : el.value;
       }
     });
 
-    fetch('https://formsubmit.co/ajax/cityboypetzllc@gmail.com', {
+    fetch('https://api.web3forms.com/submit', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
       body: JSON.stringify(data)
