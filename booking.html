@@ -510,18 +510,22 @@
       const dateFormatted = d.toLocaleDateString('en-US', { weekday:'long', year:'numeric', month:'long', day:'numeric' });
       const message = `SERVICE: ${booking.service}\nDATE: ${dateFormatted}\nTIME: ${booking.time}\nLOCATION: ${booking.location || 'TBD'}\nPHONE: ${booking.phone}\nNOTES: ${booking.notes || 'None'}`;
       try {
-        await fetch('https://api.web3forms.com/submit', {
+        const res = await fetch('/api/book', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
-            access_key: WEB3FORMS_KEY,
-            to: 'cityboypetzllc@gmail.com',
-            subject: `New Booking Request — ${booking.service} on ${dateFormatted}`,
+            service: booking.service,
+            price: booking.price || '',
+            date: booking.date,
+            time: booking.time,
             name: booking.name,
+            phone: booking.phone,
             email: booking.email,
-            message
+            location: booking.location || '',
+            notes: booking.notes || ''
           })
         });
+        if (!res.ok) throw new Error('Server error');
       } catch(e) { console.warn('Submit error', e); }
       document.getElementById('booking-wrap') && null;
       document.querySelectorAll('.booking-panel').forEach(p => p.style.display = 'none');

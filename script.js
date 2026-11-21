@@ -11,23 +11,28 @@ if (bookingForm) {
     submitBtn.disabled = true;
 
     // Collect all named fields dynamically
-    const data = {
-      access_key: 'cbd92014-2f3f-4d7e-856f-3a3fdfe5cc47',
-      subject: 'New Booking Request — City Boy Petz',
-      to: 'cityboypetzllc@gmail.com'
-    };
+    const fields = {};
     bookingForm.querySelectorAll('[name]').forEach(el => {
-      if (el.name && el.value) {
-        data[el.name] = typeof el.value === 'string' ? el.value.trim() : el.value;
-      }
+      if (el.name && el.value) fields[el.name] = el.value.trim();
     });
+    const payload = {
+      service: fields.service || 'General Inquiry',
+      price: '',
+      date: fields.date || '',
+      time: fields.time || '',
+      name: fields.name || '',
+      phone: fields.phone || '',
+      email: fields.email || '',
+      location: fields.location || '',
+      notes: fields.message || ''
+    };
 
-    fetch('https://api.web3forms.com/submit', {
+    fetch('/api/book', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-      body: JSON.stringify(data)
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
     })
-      .then(res => res.json())
+      .then(res => { if (!res.ok) throw new Error(); return res.json(); })
       .then(() => {
         bookingForm.reset();
         confirmation.textContent = "Thank you! We'll be in touch soon to confirm your booking.";
