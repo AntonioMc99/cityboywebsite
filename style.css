@@ -387,6 +387,15 @@ img {
   flex: 1;
 }
 
+.founders-subtitle {
+  color: #d7263d;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin: -0.5rem 0 1.5rem;
+  font-weight: 600;
+}
+
 .founders-text p {
   color: #ccc;
   line-height: 1.8;
