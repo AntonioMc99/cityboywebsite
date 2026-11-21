@@ -1507,3 +1507,102 @@ img {
 }
 
 .faq-item.open .faq-answer { display: block; }
+
+/* =====================================
+   TRAVEL FEES SECTION
+   ===================================== */
+
+.travel-section { background: rgba(255,255,255,0.97); }
+
+.travel-subtitle {
+  text-align: center;
+  color: #555;
+  max-width: 600px;
+  margin: 0 auto 2.5rem;
+  font-size: 1rem;
+}
+
+.travel-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.25rem;
+  margin-bottom: 2rem;
+}
+
+.travel-card {
+  background: #fff;
+  border: 2px solid #eee;
+  border-radius: 14px;
+  padding: 1.5rem;
+  position: relative;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.travel-card:hover {
+  border-color: #d7263d;
+  box-shadow: 0 4px 20px rgba(215,38,61,0.1);
+}
+
+.travel-card--custom {
+  border-style: dashed;
+  border-color: #ccc;
+  background: #fafafa;
+}
+
+.travel-badge {
+  display: inline-block;
+  color: #fff;
+  font-size: 1.3rem;
+  font-weight: 800;
+  padding: 0.3rem 0.9rem;
+  border-radius: 8px;
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.5px;
+}
+
+.travel-miles {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #888;
+  margin-bottom: 0.5rem;
+}
+
+.travel-price {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin: 0 0 0.25rem;
+  color: #111;
+}
+
+.travel-zone-label {
+  color: #2d6a4f;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.travel-cities {
+  color: #555;
+  font-size: 0.88rem;
+  line-height: 1.65;
+  margin: 0;
+}
+
+.travel-cities a { color: #d7263d; font-weight: 600; }
+
+.travel-notes {
+  background: #fff8e6;
+  border-left: 4px solid #f2c14e;
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+  color: #664d00;
+  font-size: 0.9rem;
+}
+
+.travel-notes p { margin: 0; }
+
+@media (max-width: 600px) {
+  .travel-grid { grid-template-columns: 1fr; }
+}
