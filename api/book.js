@@ -60,7 +60,7 @@ export default async function handler(req, res) {
 
   try {
     const sendEmail = async (to, subject, html, replyTo) => {
-      const body = { from: 'City Boy Petz <onboarding@resend.dev>', to, subject, html };
+      const body = { from: 'City Boy Petz <bookings@cityboypetz.com>', to, subject, html };
       if (replyTo) body.reply_to = replyTo;
       const r = await fetch('https://api.resend.com/emails', {
         method: 'POST',
