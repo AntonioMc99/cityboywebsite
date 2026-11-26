@@ -335,6 +335,9 @@
       <div class="panel-title">Review &amp; Confirm</div>
       <div class="summary-box" id="summary-box"></div>
       <p style="color:#999; font-size:0.9rem; margin-bottom:1.5rem;">By submitting, you agree that this is a booking request. We'll confirm availability and reach out within 24 hours.</p>
+      <div id="submit-error" style="display:none; background:rgba(215,38,61,0.15); border:1px solid #d7263d; border-radius:10px; padding:1rem 1.25rem; color:#ff8a9a; font-size:0.95rem; margin-bottom:1rem;">
+        Something went wrong sending your request. Please call us at <a href="tel:6787602296" style="color:#f2c14e;">(678) 760-2296</a> or email <a href="mailto:cityboypetzllc@gmail.com" style="color:#f2c14e;">cityboypetzllc@gmail.com</a>
+      </div>
       <div class="panel-nav">
         <button class="btn-back" id="back-4">← Back</button>
         <button class="btn-next" id="submit-btn">Submit Booking Request ✓</button>
@@ -367,7 +370,6 @@
   <script src="script.js"></script>
   <script>
   (() => {
-    const WEB3FORMS_KEY = 'cbd92014-2f3f-4d7e-856f-3a3fdfe5cc47';
     let booking = { service: '', price: '', date: '', time: '', name: '', phone: '', email: '', location: '', notes: '' };
     let calYear, calMonth;
 
@@ -506,9 +508,8 @@
       const btn = document.getElementById('submit-btn');
       btn.disabled = true;
       btn.textContent = 'Sending…';
-      const d = new Date(booking.date + 'T12:00:00');
-      const dateFormatted = d.toLocaleDateString('en-US', { weekday:'long', year:'numeric', month:'long', day:'numeric' });
-      const message = `SERVICE: ${booking.service}\nDATE: ${dateFormatted}\nTIME: ${booking.time}\nLOCATION: ${booking.location || 'TBD'}\nPHONE: ${booking.phone}\nNOTES: ${booking.notes || 'None'}`;
+
+      let ok = false;
       try {
         const res = await fetch('/api/book', {
           method: 'POST',
@@ -525,14 +526,23 @@
             notes: booking.notes || ''
           })
         });
-        if (!res.ok) throw new Error('Server error');
-      } catch(e) { console.warn('Submit error', e); }
-      document.getElementById('booking-wrap') && null;
-      document.querySelectorAll('.booking-panel').forEach(p => p.style.display = 'none');
-      document.getElementById('stepper').style.display = 'none';
-      const success = document.getElementById('booking-success');
-      success.classList.add('show');
-      document.getElementById('confirm-email').textContent = booking.email;
+        ok = res.ok;
+      } catch(e) {
+        ok = false;
+      }
+
+      if (ok) {
+        document.querySelectorAll('.booking-panel').forEach(p => p.style.display = 'none');
+        document.getElementById('stepper').style.display = 'none';
+        const success = document.getElementById('booking-success');
+        success.classList.add('show');
+        document.getElementById('confirm-email').textContent = booking.email;
+      } else {
+        btn.disabled = false;
+        btn.textContent = 'Submit Booking Request ✓';
+        const errDiv = document.getElementById('submit-error');
+        if (errDiv) errDiv.style.display = 'block';
+      }
     });
   })();
   </script>
